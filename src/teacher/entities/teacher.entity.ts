@@ -6,6 +6,7 @@ export type TeacherDocument = Teacher & Document;
 
 @Schema()
 export class Teacher {
+
     @Prop()
     id: string;
 
@@ -13,7 +14,13 @@ export class Teacher {
     name: string;
 
     @Prop()
-    subject: string;
+    subject?: string;
+
+    @Prop()
+    created_at: Date;
+
+    @Prop()
+    updated_at: Date;
 
     constructor() {
         if (!this.id) {

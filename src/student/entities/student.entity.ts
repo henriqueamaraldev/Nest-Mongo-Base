@@ -15,6 +15,12 @@ export class Student {
     @Prop()
     teacherId: string;
 
+    @Prop()
+    created_at: Date;
+
+    @Prop()
+    updated_at: Date;
+
     constructor() {
         if (!this.id) {
             this.id = uuid();

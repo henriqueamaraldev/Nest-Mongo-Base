@@ -11,9 +11,10 @@ import { TeacherService } from '../teacher/teacher.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), 
-    MongooseModule.forRoot(process.env.MONGODBLINK), 
-    MongooseModule.forFeature([{ name: Student.name, schema: StudentSchema }, { name: Teacher.name, schema: TeacherSchema }])],
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODBLINK),
+    MongooseModule.forFeature([{ name: Student.name, schema: StudentSchema }, { name: Teacher.name, schema: TeacherSchema }])
+  ],
   controllers: [StudentController, TeacherController, StudentTeacherController],
   providers: [StudentService, TeacherService],
 })
