@@ -5,7 +5,7 @@ import { CreateStudentsDto, UpdateStudentsDto } from './dto/students.dto';
 import { Student, StudentDocument } from './entities/student.entity';
 
 @Injectable()
-export class StudentService {
+export class StudentServices {
     constructor(@InjectModel(Student.name) private studentModel: Model<StudentDocument>) { }
 
     async create(inputStudent: CreateStudentsDto) {
@@ -25,7 +25,7 @@ export class StudentService {
     }
 
     findAll() {
-        return this.studentModel.find().lean()
+        return this.studentModel.find().populate('teacherId', 'name subject -_id')
     }
 
     findById(id: string) {
@@ -33,12 +33,11 @@ export class StudentService {
     }
 
     updateStudentById(id: string, inputStudent: UpdateStudentsDto) {
-        let updateStudent = { updated_at: new Date(), ...inputStudent }
         return this.studentModel.findByIdAndUpdate({
             _id: id,
         },
             {
-                $set: updateStudent,
+                $set: inputStudent,
             },
             {
                 new: true,
@@ -47,6 +46,6 @@ export class StudentService {
     }
 
     findByTeacher(teacherId: string) {
-        return this.studentModel.find({ teacherId: teacherId })
+        return this.studentModel.find({ teacherId: teacherId }).lean()
     }
 }

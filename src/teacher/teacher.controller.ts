@@ -1,31 +1,28 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
-import { CreateTeacherDto, getTeachersView, getTeacherView, UpdateTeacherDto } from './dto/teachers.dto';
-import { TeacherService } from './teacher.service';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { CreateTeacherDto, UpdateTeacherDto } from './dto/teachers.dto';
+import { TeacherServices } from './teacher.service';
 
 @Controller('teachers')
-export class TeacherController {
-    constructor(private readonly teacherService: TeacherService) { }
+export class TeacherControllers {
+    constructor(private readonly teacherServices: TeacherServices) { }
 
-    @UseInterceptors(ClassSerializerInterceptor)
     @Get()
-    async getTeachers() {
-        let rawTeachers: any = await this.teacherService.findAllTeachers()
-        return getTeachersView(rawTeachers)
+    async getAllTeachers() {
+        return await this.teacherServices.findAll()
     }
 
     @Get('/:teacherId')
     async getTeacherById(
         @Param('teacherId') teacherId: string
     ) {
-        let rawTeacher = await this.teacherService.findById(teacherId)
-        return getTeacherView(rawTeacher)
+        return this.teacherServices.findById(teacherId)
     }
 
     @Post()
     createTeacher(
         @Body() teacherInput: CreateTeacherDto
     ) {
-        return this.teacherService.create(teacherInput)
+        return this.teacherServices.create(teacherInput)
     }
 
     @Patch('/:teacherId')
@@ -33,6 +30,6 @@ export class TeacherController {
         @Param('teacherId') teacherId: string,
         @Body() body: UpdateTeacherDto
     ) {
-        return this.teacherService.updateTeacherById(teacherId, body)
+        return this.teacherServices.updateTeacherById(teacherId, body)
     }
 }

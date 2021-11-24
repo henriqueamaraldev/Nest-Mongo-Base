@@ -6,20 +6,21 @@ export type StudentDocument = Student & Document;
 
 @Schema()
 export class Student {
+
     @Prop()
     id: string;
 
-    @Prop()
+    @Prop({ required: true, unique: true })
     name: string;
 
-    @Prop()
+    @Prop({ ref: 'Teacher' })
     teacherId: string;
 
     @Prop()
-    created_at: Date;
+    createdAt: Date;
 
     @Prop()
-    updated_at: Date;
+    updatedAt: Date;
 
     constructor() {
         if (!this.id) {
@@ -28,4 +29,7 @@ export class Student {
     }
 }
 
-export const StudentSchema = SchemaFactory.createForClass(Student);
+export const StudentSchema = SchemaFactory.createForClass(Student).set(
+    'timestamps',
+    true,
+);

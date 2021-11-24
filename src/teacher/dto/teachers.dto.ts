@@ -1,18 +1,20 @@
 import { PartialType } from "@nestjs/mapped-types"
-import { IsString } from 'class-validator'
-import { Teacher } from "../entities/teacher.entity"
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 export class CreateTeacherDto {
+
     @IsString()
+    @IsNotEmpty()
     name: string
 
     @IsString()
+    @IsOptional()
     subject?: string
 }
 
 export class UpdateTeacherDto extends PartialType(CreateTeacherDto) { }
 
-export interface teacherViewDto {
+/* export interface teacherViewDto {
     name: string
     subject: string
     elapsedTime: string
@@ -28,10 +30,10 @@ function DateToElapsedHours(inputDate) {
 }
 
 export function getTeachersView(rawTeachers: Teacher[]) {
-    return rawTeachers.map(({ created_at, name, subject }) => ({
+    return rawTeachers.map(({ createdAt, name, subject }) => ({
         name,
         subject,
-        elapsedTime: `Days: ${DateToElapsedDays(created_at)}, Hours: ${DateToElapsedHours(created_at)} `
+        elapsedTime: `Days: ${DateToElapsedDays(createdAt)}, Hours: ${DateToElapsedHours(createdAt)} `
     }))
 }
 
@@ -39,7 +41,7 @@ export function getTeacherView(rawTeacher: Teacher) {
     let teacherView: teacherViewDto = {
         name: rawTeacher.name,
         subject: rawTeacher.subject,
-        elapsedTime: `Days: ${DateToElapsedDays(rawTeacher.created_at)}, Hours: ${DateToElapsedHours(rawTeacher.created_at)}`
+        elapsedTime: `Days: ${DateToElapsedDays(rawTeacher.createdAt)}, Hours: ${DateToElapsedHours(rawTeacher.createdAt)}`
     }
     return teacherView
-}
+}*/

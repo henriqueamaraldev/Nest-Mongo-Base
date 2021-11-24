@@ -10,17 +10,17 @@ export class Teacher {
     @Prop()
     id: string;
 
-    @Prop()
+    @Prop({ required: true, unique: true })
     name: string;
 
     @Prop()
+    createdAt: Date;
+
+    @Prop()
+    updatedAt: Date;
+
+    @Prop({ default: null })
     subject?: string;
-
-    @Prop()
-    created_at: Date;
-
-    @Prop()
-    updated_at: Date;
 
     constructor() {
         if (!this.id) {
@@ -29,4 +29,7 @@ export class Teacher {
     }
 }
 
-export const TeacherSchema = SchemaFactory.createForClass(Teacher);
+export const TeacherSchema = SchemaFactory.createForClass(Teacher).set(
+    'timestamps',
+    true,
+);
