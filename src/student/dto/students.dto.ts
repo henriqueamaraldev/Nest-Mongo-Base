@@ -14,43 +14,35 @@ export class CreateStudentsDto {
 
 export class UpdateStudentsDto extends PartialType(CreateStudentsDto) { }
 
-/* export class StudentViewDto {
 
-    @IsString()
-    @IsNotEmpty()
-    name: string
-
-    @IsString()
-    @IsNotEmpty()
-    teacherId: string
-
-    @IsString()
-    @IsNotEmpty()
-    elapsedTime: string
-}
-
-function DateToElapsedDays(inputDate) {
-    return Math.trunc((new Date().getTime() - inputDate.getTime()) / 86400000)
-
-}
-
-function DateToElapsedHours(inputDate) {
-    return (Math.trunc((new Date().getTime() - inputDate.getTime()) / 3600000) % 24)
-}
-
-export function getStudentsView(rawStudents: Student[]): StudentViewDto[] {
-    return rawStudents.map(({ createdAt, teacherId, name }) => ({
+/*
+export function getTeachersView(rawTeachers: Teacher[]) {
+    return rawTeachers.map(({ createdAt, name, subject }) => ({
         name,
-        teacherId,
-        elapsedTime: `Days: ${DateToElapsedDays(createdAt)}, Hours: ${DateToElapsedHours(createdAt)}`
+        subject,
+        elapsedTime: DateToElapsedTime(createdAt)
     }))
 }
 
-export function getStudentView(rawStudent: Student) {
-    let studentView: StudentViewDto = {
-        name: rawStudent.name,
-        teacherId: rawStudent.teacherId,
-        elapsedTime: `Days: ${DateToElapsedDays(rawStudent.createdAt)}, Hours: ${DateToElapsedHours(rawStudent.createdAt)}`
+export function getTeacherView(rawTeacher: Teacher) {
+    let teacherView: teacherViewDto = {
+        name: rawTeacher.name,
+        subject: rawTeacher.subject,
+        elapsedTime: DateToElapsedTime(rawTeacher.createdAt)
     }
-    return studentView
-}*/
+    return teacherView
+}
+
+function DateToElapsedTime(createdDate: Date) {
+    return `Days: ${dateToElapsedDays(createdDate)}, Hours: ${dateToElapsedHours(createdDate)}`
+}
+
+function dateToElapsedHours(createdDate: Date) {
+    return (dateToElapsedDays(createdDate) % 24)
+}
+
+function dateToElapsedDays(createdDate: Date) {
+    return Math.trunc((new Date().getTime() - createdDate.getTime()) / 86400000)
+
+}
+*/

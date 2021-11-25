@@ -9,18 +9,7 @@ export class StudentServices {
     constructor(@InjectModel(Student.name) private studentModel: Model<StudentDocument>) { }
 
     async create(inputStudent: CreateStudentsDto) {
-
-        if (!inputStudent.name) {
-            throw new Error(`You can't create a nameless student!`)
-        }
-
-        let studentCheck = await this.studentModel.findOne({ name: inputStudent.name })
-        if (studentCheck) {
-            throw new Error(`Student already exists`)
-        }
-
-        let createStudent = { created_at: new Date(), updated_at: new Date(), ...inputStudent }
-        let student = new this.studentModel(createStudent);
+        let student = new this.studentModel(inputStudent);
         return student.save();
     }
 

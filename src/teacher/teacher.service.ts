@@ -14,8 +14,7 @@ export class TeacherServices {
     ) { }
 
     async create(inputTeacher: CreateTeacherDto) {
-
-        const teacher = new this.teacherModel(inputTeacher);
+        const teacher = await new this.teacherModel(inputTeacher);
         return teacher.save();
     }
 
