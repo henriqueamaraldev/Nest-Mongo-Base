@@ -14,11 +14,6 @@ export class CreateTeacherDto {
 
 export class UpdateTeacherDto extends PartialType(CreateTeacherDto) { }
 
-export interface teacherViewDto {
-    name: string
-    subject: string
-    elapsedTime: string
-}
 
 /*
 export function getTeachersView(rawTeachers: Teacher[]) {

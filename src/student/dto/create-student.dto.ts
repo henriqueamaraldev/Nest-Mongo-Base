@@ -7,9 +7,6 @@ export class CreateStudentsDto {
     @IsNotEmpty()
     name: string
 
-    @IsString()
-    @IsNotEmpty()
-    teacherId: string
 }
 
 export class UpdateStudentsDto extends PartialType(CreateStudentsDto) { }

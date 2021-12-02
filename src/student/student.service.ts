@@ -1,40 +1,41 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { CreateStudentsDto, UpdateStudentsDto } from './dto/students.dto';
-import { Student, StudentDocument } from './entities/student.entity';
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { CreateStudentsDto, UpdateStudentsDto } from './dto/create-student.dto'
+import { Student, StudentDocument } from './entities/student.entity'
 
 @Injectable()
 export class StudentServices {
-    constructor(@InjectModel(Student.name) private studentModel: Model<StudentDocument>) { }
+    constructor(
+        @InjectModel(Student.name) private studentModel: Model<StudentDocument>
+    ) { }
 
     async create(inputStudent: CreateStudentsDto) {
-        let student = new this.studentModel(inputStudent);
-        return student.save();
+
+        let modelStudent = new this.studentModel(inputStudent)
+
+        return await modelStudent.save()
     }
 
     findAll() {
-        return this.studentModel.find().populate('teacherId', 'name subject -_id')
+
+        return this.studentModel.find()
     }
 
-    findById(id: string) {
-        return this.studentModel.findById(id);
+    async findOne(studentId: string) {
+
+        return await this.studentModel.findById(studentId);
     }
 
-    updateStudentById(id: string, inputStudent: UpdateStudentsDto) {
+    updateById(id: string, inputStudent: UpdateStudentsDto) {
+
         return this.studentModel.findByIdAndUpdate({
             _id: id,
         },
             {
                 $set: inputStudent,
-            },
-            {
-                new: true,
             }
         )
     }
 
-    findByTeacher(teacherId: string) {
-        return this.studentModel.find({ teacherId: teacherId }).lean()
-    }
 }

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { CreateTeacherDto, UpdateTeacherDto } from './dto/teachers.dto';
+import { CreateTeacherDto, UpdateTeacherDto } from './dto/create-teacher.dto';
 import { TeacherServices } from './teacher.service';
 
 @Controller('teachers')
@@ -8,28 +8,32 @@ export class TeacherControllers {
 
     @Get()
     async getAllTeachers() {
+
         return await this.teacherServices.findAll()
     }
-
+    s
     @Get('/:teacherId')
     async getTeacherById(
         @Param('teacherId') teacherId: string
     ) {
-        return this.teacherServices.findById(teacherId)
+
+        return this.teacherServices.findOne(teacherId)
     }
 
     @Post()
     createTeacher(
         @Body() teacherInput: CreateTeacherDto
     ) {
+
         return this.teacherServices.create(teacherInput)
     }
 
     @Patch('/:teacherId')
     updateTeacher(
         @Param('teacherId') teacherId: string,
-        @Body() body: UpdateTeacherDto
+        @Body() updateTeacherInput: UpdateTeacherDto
     ) {
-        return this.teacherServices.updateTeacherById(teacherId, body)
+
+        return this.teacherServices.updateById(teacherId, updateTeacherInput)
     }
 }
