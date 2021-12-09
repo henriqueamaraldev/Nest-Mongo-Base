@@ -4,33 +4,32 @@ export type ScheduleDocument = Schedule & Document;
 
 @Schema()
 export class Schedule {
+  @Prop()
+  classDate: Date;
 
-    @Prop()
-    classDate: Date
+  @Prop({ ref: 'Teacher' })
+  teacher: string;
 
-    @Prop({ ref: 'Teacher' })
-    teacher: string
+  @Prop({ ref: 'Student' })
+  student: string;
 
-    @Prop({ ref: 'Student' })
-    student: string
+  @Prop()
+  subject: string;
 
-    @Prop()
-    subject: string
+  @Prop()
+  value: number;
 
-    @Prop()
-    value: number
+  @Prop()
+  environment: string;
 
-    @Prop()
-    environment: string
+  @Prop()
+  address?: string;
 
-    @Prop()
-    address?: string
-
-    @Prop()
-    link?: string
+  @Prop()
+  link?: string;
 }
 
 export const ScheduleSchema = SchemaFactory.createForClass(Schedule).set(
-    'timestamps',
-    true,
-)
+  'timestamps',
+  true,
+);

@@ -6,10 +6,15 @@ import { Schedule, ScheduleSchema } from './entities/schedule.entity';
 import { ScheduleController } from './schedule.controller';
 import { ScheduleService } from './schedule.service';
 
-
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Schedule.name, schema: ScheduleSchema }]), TeacherModule, StudentModule],
+  imports: [
+    MongooseModule.forFeature([
+      { name: Schedule.name, schema: ScheduleSchema },
+    ]),
+    TeacherModule,
+    StudentModule,
+  ],
   controllers: [ScheduleController],
-  providers: [ScheduleService]
+  providers: [ScheduleService],
 })
-export class ScheduleModule { }
+export class ScheduleModule {}

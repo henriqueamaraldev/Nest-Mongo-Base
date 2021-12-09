@@ -48,9 +48,9 @@ export class ScheduleService {
     return this.scheduleModel.findById(scheduleId);
   }
 
-  updateScheduleById(id: number, inputSchedule: UpdateScheduleDto) {
+  updateScheduleById(scheduleId: string, inputSchedule: UpdateScheduleDto) {
     return this.scheduleModel.findByIdAndUpdate({
-      _id: id,
+      _id: scheduleId,
     },
       {
         $set: inputSchedule,
@@ -66,7 +66,7 @@ export class ScheduleService {
     return this.scheduleModel.find({ student: studentId })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} schedule`;
+  remove(scheduleId: string) {
+    return `This action removes a #${scheduleId} schedule`;
   }
 }

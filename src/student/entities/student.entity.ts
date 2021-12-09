@@ -5,6 +5,11 @@ export type StudentDocument = Student & Document;
 
 @Schema()
 export class Student {
+    @Prop({ required: true, unique: true})
+    email: string
+
+    @Prop({ required: true })
+    password: string
 
     @Prop({ required: true, unique: true })
     name: string

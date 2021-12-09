@@ -1,16 +1,20 @@
-import { PartialType } from '@nestjs/mapped-types'
-import { IsNotEmpty, IsString } from 'class-validator'
+import { PartialType } from '@nestjs/mapped-types';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateStudentsDto {
+	@IsNotEmpty()
+	@IsEmail()
+	email: string
 
-    @IsString()
-    @IsNotEmpty()
-    name: string
+	@IsNotEmpty()
+	password: string
 
+	@IsString()
+	@IsNotEmpty()
+	name: string
 }
 
-export class UpdateStudentsDto extends PartialType(CreateStudentsDto) { }
-
+export class UpdateStudentsDto extends PartialType(CreateStudentsDto) {}
 
 /*
 export function getTeachersView(rawTeachers: Teacher[]) {
