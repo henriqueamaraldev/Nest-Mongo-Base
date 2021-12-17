@@ -11,29 +11,24 @@ import { Schedule, ScheduleDocument } from './entities/schedule.entity';
 export class ScheduleService {
   constructor(
     @InjectModel(Schedule.name) private scheduleModel: Model<ScheduleDocument>,
-    public studentServices: StudentServices,
-    public teacherServices: TeacherServices
+    private studentServices: StudentServices,
+    private teacherServices: TeacherServices
   ) { }
 
   async create(inputSchedule: CreateScheduleDto) {
 
     const { classDate, teacher, student } = inputSchedule
-
     if (classDate <= new Date()) {
-
       throw new Error("you can't schedule a class for the past")
     }
 
     try {
-
       await this.teacherServices.findOne(teacher)
       await this.studentServices.findOne(student)
-
     } catch (error) {
 
     }
-
-
+    
     let modelSchedule = new this.scheduleModel(inputSchedule);
     const schedule = await modelSchedule.save()
 
