@@ -31,5 +31,5 @@ export class Schedule {
 
 export const ScheduleSchema = SchemaFactory.createForClass(Schedule).set(
   'timestamps',
-  true,
+  true
 );

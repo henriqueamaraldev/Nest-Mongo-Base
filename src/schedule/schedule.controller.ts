@@ -33,7 +33,7 @@ export class ScheduleController {
   @Patch(':id')
   update(
     @Param('id') scheduleId: string,
-    @Body() inputSchedule: UpdateScheduleDto,
+    @Body() inputSchedule: UpdateScheduleDto
   ) {
     return this.scheduleService.updateScheduleById(scheduleId, inputSchedule);
   }

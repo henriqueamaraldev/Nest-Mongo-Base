@@ -8,12 +8,16 @@ import { PaymentModule } from './payment/payment.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-	imports: [
-		ConfigModule.forRoot(),
-		MongooseModule.forRoot(process.env.MONGODBLINK),
-		TeacherModule, StudentModule, ScheduleModule, PaymentModule, AuthModule
-	],
-	controllers: [],
-	providers: [],
+  imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODBLINK),
+    TeacherModule,
+    StudentModule,
+    ScheduleModule,
+    PaymentModule,
+    AuthModule,
+  ],
+  controllers: [],
+  providers: [],
 })
-export class AppModule { }
+export class AppModule {}

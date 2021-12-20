@@ -16,5 +16,5 @@ export class Payment {
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment).set(
   'timestamps',
-  true,
+  true
 );

@@ -6,34 +6,32 @@ import { Teacher, TeacherDocument } from './entities/teacher.entity';
 
 @Injectable()
 export class TeacherServices {
-    constructor(
-        @InjectModel(Teacher.name) private teacherModel: Model<TeacherDocument>
-    ) { }
+  constructor(
+    @InjectModel(Teacher.name) private teacherModel: Model<TeacherDocument>
+  ) {}
 
-    async create(inputTeacher: CreateTeacherDto) {
+  async create(inputTeacher: CreateTeacherDto) {
+    const modelTeacher = new this.teacherModel(inputTeacher);
 
-        let modelTeacher = new this.teacherModel(inputTeacher)
+    return await modelTeacher.save();
+  }
 
-        return await modelTeacher.save()
-    }
+  findAll() {
+    return this.teacherModel.find();
+  }
 
-    findAll() {
-        return this.teacherModel.find()
-    }
+  async findOne(teacherId: string) {
+    return await this.teacherModel.findById(teacherId);
+  }
 
-    async findOne(teacherId: string) {
-
-        return await this.teacherModel.findById(teacherId)
-    }
-
-    updateById(id: string, inputTeacher:
-        UpdateTeacherDto) {
-        return this.teacherModel.findByIdAndUpdate({
-            _id: id,
-        },
-            {
-                $set: inputTeacher,
-            }
-        )
-    }
+  updateById(id: string, inputTeacher: UpdateTeacherDto) {
+    return this.teacherModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $set: inputTeacher,
+      }
+    );
+  }
 }

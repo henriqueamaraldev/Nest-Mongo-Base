@@ -5,22 +5,20 @@ export type TeacherDocument = Teacher & Document;
 
 @Schema()
 export class Teacher {
+  @Prop({ required: true, unique: true })
+  name: string;
 
-    @Prop({ required: true, unique: true })
-    name: string
+  @Prop()
+  createdAt: Date;
 
-    @Prop()
-    createdAt: Date
+  @Prop()
+  updatedAt: Date;
 
-    @Prop()
-    updatedAt: Date
-
-    @Prop({ default: null })
-    subject?: string
-
+  @Prop({ default: null })
+  subject?: string;
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher).set(
-    'timestamps',
-    true,
-)
+  'timestamps',
+  true
+);

@@ -3,7 +3,7 @@ import { CreateStudentsDto, UpdateStudentsDto } from './dto/create-student.dto';
 import { StudentServices } from './student.service';
 @Controller('students')
 export class StudentControllers {
-  constructor(private readonly studentServices: StudentServices) { }
+  constructor(private readonly studentServices: StudentServices) {}
 
   @Get()
   getAllStudents() {
@@ -23,7 +23,7 @@ export class StudentControllers {
   @Patch('/:studentId')
   updateStudent(
     @Param('studentId') id: string,
-    @Body() UpdateStudentInput: UpdateStudentsDto,
+    @Body() UpdateStudentInput: UpdateStudentsDto
   ) {
     return this.studentServices.updateById(id, UpdateStudentInput);
   }

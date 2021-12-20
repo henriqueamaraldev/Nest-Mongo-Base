@@ -5,9 +5,11 @@ import { TeacherControllers } from './teacher.controller';
 import { TeacherServices } from './teacher.service';
 
 @Module({
-    imports: [MongooseModule.forFeature([{ name: Teacher.name, schema: TeacherSchema }])],
-    controllers: [TeacherControllers],
-    providers: [TeacherServices],
-    exports: [TeacherServices],
+  imports: [
+    MongooseModule.forFeature([{ name: Teacher.name, schema: TeacherSchema }]),
+  ],
+  controllers: [TeacherControllers],
+  providers: [TeacherServices],
+  exports: [TeacherServices],
 })
-export class TeacherModule { }
+export class TeacherModule {}

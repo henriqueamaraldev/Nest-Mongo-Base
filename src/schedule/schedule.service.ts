@@ -13,30 +13,30 @@ export class ScheduleService {
     @InjectModel(Schedule.name) private scheduleModel: Model<ScheduleDocument>,
     private studentServices: StudentServices,
     private teacherServices: TeacherServices
-  ) { }
+  ) {}
 
   async create(inputSchedule: CreateScheduleDto) {
-
-    const { classDate, teacher, student } = inputSchedule
+    const { classDate, teacher, student } = inputSchedule;
     if (classDate <= new Date()) {
-      throw new Error("you can't schedule a class for the past")
+      throw new Error("you can't schedule a class for the past");
     }
 
     try {
-      await this.teacherServices.findOne(teacher)
-      await this.studentServices.findOne(student)
-    } catch (error) {
+      await this.teacherServices.findOne(teacher);
+      await this.studentServices.findOne(student);
+    } catch (error) {}
 
-    }
-    
-    let modelSchedule = new this.scheduleModel(inputSchedule);
-    const schedule = await modelSchedule.save()
+    const modelSchedule = new this.scheduleModel(inputSchedule);
+    const schedule = await modelSchedule.save();
 
-    return schedule
+    return schedule;
   }
 
   findAll() {
-    return this.scheduleModel.find().populate('teacher', 'name').populate('student', 'name')
+    return this.scheduleModel
+      .find()
+      .populate('teacher', 'name')
+      .populate('student', 'name');
   }
 
   findOne(scheduleId: string) {
@@ -44,21 +44,22 @@ export class ScheduleService {
   }
 
   updateScheduleById(scheduleId: string, inputSchedule: UpdateScheduleDto) {
-    return this.scheduleModel.findByIdAndUpdate({
-      _id: scheduleId,
-    },
+    return this.scheduleModel.findByIdAndUpdate(
+      {
+        _id: scheduleId,
+      },
       {
         $set: inputSchedule,
       }
-    )
+    );
   }
 
   findByTeacher(teacherId: string) {
-    return this.scheduleModel.find({ teacher: teacherId })
+    return this.scheduleModel.find({ teacher: teacherId });
   }
 
   findByStudent(studentId: string) {
-    return this.scheduleModel.find({ student: studentId })
+    return this.scheduleModel.find({ student: studentId });
   }
 
   remove(scheduleId: string) {
