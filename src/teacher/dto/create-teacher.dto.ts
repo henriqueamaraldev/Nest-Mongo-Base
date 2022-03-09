@@ -3,7 +3,6 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateTeacherDto {
   @IsString()
-  @IsOptional()
   @IsNotEmpty()
   name: string;
 
