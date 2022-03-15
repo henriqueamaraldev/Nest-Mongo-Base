@@ -20,5 +20,5 @@ export class Teacher {
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher).set(
   'timestamps',
-  true
+  true,
 );
