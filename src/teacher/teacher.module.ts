@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Teacher, TeacherSchema } from './entities/teacher.entity';
+import { Teacher, TeacherSchema } from './models/entities/teacher.entity';
 import { TeacherControllers } from './teacher.controller';
 import { TeacherServices } from './teacher.service';
 

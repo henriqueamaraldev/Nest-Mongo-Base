@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentModule } from '../student/student.module';
 import { TeacherModule } from '../teacher/teacher.module';
-import { Payment, PaymentSchema } from './entities/payment.entity';
+import { Payment, PaymentSchema } from './models/entities/payment.entity';
 import { PaymentController } from './payment.controller';
 import { PaymentService } from './payment.service';
 

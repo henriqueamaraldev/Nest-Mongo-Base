@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentModule } from '../student/student.module';
 import { TeacherModule } from '../teacher/teacher.module';
-import { Schedule, ScheduleSchema } from './entities/schedule.entity';
+import { Schedule, ScheduleSchema } from './models/entities/schedule.entity';
 import { ScheduleController } from './schedule.controller';
 import { ScheduleService } from './schedule.service';
 

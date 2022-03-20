@@ -3,9 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { StudentServices } from '../student/student.service';
 import { TeacherServices } from '../teacher/teacher.service';
-import { CreateScheduleDto } from './dto/create-schedule.dto';
-import { UpdateScheduleDto } from './dto/update-schedule.dto';
-import { Schedule, ScheduleDocument } from './entities/schedule.entity';
+import { CreateScheduleDto } from './models/dto/create-schedule.dto';
+import { UpdateScheduleDto } from './models/dto/update-schedule.dto';
+import { Schedule, ScheduleDocument } from './models/entities/schedule.entity';
 
 @Injectable()
 export class ScheduleService {

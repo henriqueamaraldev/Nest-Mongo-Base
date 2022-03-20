@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ok } from '../utils/helpers/http-helper';
-import { CreateStudentsDto, UpdateStudentsDto } from './dto/create-student.dto';
-import { Student, StudentDocument } from './entities/student.entity';
+import { CreateStudentsDto, UpdateStudentsDto } from './models/dto/create-student.dto';
+import { Student, StudentDocument } from './models/entities/student.entity';
 
 @Injectable()
 export class StudentServices {

@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateScheduleDto } from './dto/create-schedule.dto';
-import { UpdateScheduleDto } from './dto/update-schedule.dto';
+import { CreateScheduleDto } from './models/dto/create-schedule.dto';
+import { UpdateScheduleDto } from './models/dto/update-schedule.dto';
 import { ScheduleService } from './schedule.service';
 
 @Controller('schedules')
